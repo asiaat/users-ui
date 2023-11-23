@@ -1,11 +1,22 @@
 <script setup>
 import { ref } from "vue";
+import axios from 'axios';
+import { useRouter } from 'vue-router';
 
-
+const router = useRouter();
 const form = ref({
   email: "",
   password: "",
 });
+
+const handleLogin = async () => {
+    await axios.post('/login',{
+        email: form.value.email,
+        password: form.value.password
+    });
+
+    router.push("/");
+}
 </script>
 
 <template>
@@ -29,7 +40,7 @@ const form = ref({
             "
           >
             <div class="mb-10 text-center md:mb-16">Login </div>
-            <form >
+            <form @submit.prevent="handleLogin">
               <div class="mb-6">
                 <input
                   type="email"
