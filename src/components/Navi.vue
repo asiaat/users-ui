@@ -31,6 +31,13 @@
               aria-current="page"
               >Login</router-link>
           </li>
+          <li>
+            <router-link
+              :to="{ name: 'Register' }"
+              class="block rounded py-2 pr-4 pl-3 text-gray-400"
+              aria-current="page"
+              >Sign Up</router-link>
+          </li>
         </ul>
         </div>
     </nav>
