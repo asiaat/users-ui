@@ -1,5 +1,10 @@
+<script setup>
+  import Navi from './components/Navi.vue';
+</script>
+
 <template>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+  <main>
+    <Navi />
+    <RouterView />
+  </main>
 </template>
