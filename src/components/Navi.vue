@@ -9,7 +9,7 @@ const authStore = useAuthStore();
       class="container mx-auto flex flex-wrap items-center justify-between"
       bis_skin_checked="1"
     >
-      <a href="https://laraveller.com/" class="flex items-center">
+      <a href="/" class="flex items-center">
         Customers
       </a>
       <button
