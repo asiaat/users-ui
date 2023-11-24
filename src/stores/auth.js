@@ -52,6 +52,23 @@ export const useAuthStore = defineStore("auth",{
               }
             }
           }, 
+          async handleUpdateCustomer(data) {
+            
+            await this.getToken();
+            try {
+              await axios.post("/update_customer", {
+                name: data.name,
+                firstname: data,firstname,
+                lastname: data.lastname,
+                birthofdate: data.birthofdate,
+              });
+              this.router.push("/");
+            } catch (error) {
+              if (error.response.status === 422) {
+                this.authErrors = error.response.data.errors;
+              }
+            }
+          }, 
           async handleLogout() {
             await axios.post("/logout");
             this.authUser = null;
