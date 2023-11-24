@@ -7,6 +7,7 @@ const user = ref();
 onMounted(async () => {
     const data = await axios.get('/api/user');
     console.log(data);
+    user.value = data.data;
 });
 </script>
 <template>

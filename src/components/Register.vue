@@ -1,12 +1,28 @@
 
 <script setup>
 import { ref } from "vue";
+import axios from 'axios';
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 
 const form = ref({
-  email: "",
-  password: "",
+    name:"",
+    email: "",
+    password: "",
+    password_confirmation : ""
 });
+
+const handleRegister = async () => {
+    await axios.post('/api/register',{
+        name: form.value.name,
+        email: form.value.email,
+        password: form.value.password,
+        password_confirmation: form.value.password_confirmation
+    });
+
+    router.push("/");
+}
 </script>
 
 <template>
@@ -30,7 +46,28 @@ const form = ref({
             "
           >
             <div class="mb-10 text-center md:mb-16">Sign Up </div>
-            <form >
+            <form @submit.prevent="handleRegister">
+                <div class="mb-6">
+                <input
+                  type="text"
+                  v-model="form.name"
+                  placeholder="Name"
+                  class="
+                    bordder-[#E9EDF4]
+                    w-full
+                    rounded-md
+                    border
+                    bg-[#FCFDFE]
+                    py-3
+                    px-5
+                    text-base text-body-color
+                    placeholder-[#ACB6BE]
+                    outline-none
+                    focus:border-primary
+                    focus-visible:shadow-none
+                  "
+                />
+                </div>
               <div class="mb-6">
                 <input
                   type="email"
@@ -60,6 +97,28 @@ const form = ref({
                   type="password"
                   v-model="form.password"
                   placeholder="Password"
+                  class="
+                    bordder-[#E9EDF4]
+                    w-full
+                    rounded-md
+                    border
+                    bg-[#FCFDFE]
+                    py-3
+                    px-5
+                    text-base text-body-color
+                    placeholder-[#ACB6BE]
+                    outline-none
+                    focus:border-primary
+                    focus-visible:shadow-none
+                  "
+                />
+                
+              </div>
+              <div class="mb-6">
+                <input
+                  type="password"
+                  v-model="form.password_confirmation"
+                  placeholder="Password Conirmation"
                   class="
                     bordder-[#E9EDF4]
                     w-full
