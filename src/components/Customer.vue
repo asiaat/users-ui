@@ -2,23 +2,27 @@
 <script setup>
   import { ref, onMounted } from "vue";
   import { useAuthStore } from "../stores/auth";
+ 
   
   const authStore = useAuthStore();
   const isEditing = ref(false);
 
   onMounted(async () => {
     await authStore.getUser();
+    
     initializeForm();
   });
+
+  
   
   const form = ref({
-    name:"",
-    email: "",
-    password: "",
-    password_confirmation : "",
-    firstname:"",
-    lastname:"",
-    birthofdate:"",
+        name:"",
+        email: "",
+        password: "",
+        password_confirmation : "",
+        firstname:"",
+        lastname:"",
+        birthofdate:"",
     });
 
     const initializeForm = () => {
@@ -44,6 +48,7 @@
     <section class="bg-[#F4F7FF] py-20 lg:py-[120px]">
       <div class="container mx-auto">
         <div class="-mx-4 flex flex-wrap">
+            
           <div class="w-full px-4">
             <div
               class="
@@ -114,6 +119,10 @@
               </div>
               <div v-else>
                 <h1>Please login to view your profile</h1>
+                <div>
+                    datepicker
+                    <Datepicker v-model="date" />
+                </div>
               </div>
             </div>
           </div>
