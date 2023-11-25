@@ -5,22 +5,29 @@
   
   const authStore = useAuthStore();
   const isEditing = ref(false);
-  
-  // Andmeväljad
-  const firstName = ref('');
-  const lastName = ref('');
-  const dateOfBirth = ref('');
-  const username = ref('');
-  
+
   onMounted(async () => {
     await authStore.getUser();
-    if (authStore.user) {
-      firstName.value = authStore.user.firstName;
-      lastName.value = authStore.user.lastName;
-      dateOfBirth.value = authStore.user.dateOfBirth;
-      username.value = authStore.user.name;
-    }
+    initializeForm();
   });
+  
+  const form = ref({
+    name:"",
+    email: "",
+    password: "",
+    password_confirmation : "",
+    firstname:"",
+    lastname:"",
+    birthofdate:"",
+    });
+
+    const initializeForm = () => {
+        form.value.firstname = authStore.user.firstname || "";
+        form.value.lastname = authStore.user.lastname || "";
+        form.value.birthofdate = authStore.user.birthofdate || "";
+        form.value.name = authStore.user.name || "";
+        // ... Muud väljad ...
+    };
   
   const editProfile = () => {
     isEditing.value = true;
@@ -30,11 +37,7 @@
     isEditing.value = false;
   };
   
-  const updateProfile = async () => {
-    // Uuendage kasutaja andmeid siin
-    // Näiteks võite teha API päringu, et uuendada andmeid tagalas
-    isEditing.value = false;
-  };
+  
   </script>
 
 <template>
@@ -60,27 +63,28 @@
               <div v-if="authStore.user">
                 <div v-if="isEditing">
                   <!-- Muutmise vorm -->
-                  <form @submit.prevent="updateProfile">
+                  <form @submit.prevent="authStore.handleUpdateCustomer(form)">
                     <div class="mb-6">
                       <input
                         type="text"
-                        v-model="firstName"
-                        placeholder="First Name"
+                        v-model="form.firstname"
+                        placeholder="firstname"
                         class="input-style"
+                        
                       />
                     </div>
                     <div class="mb-6">
                       <input
                         type="text"
-                        v-model="lastName"
-                        placeholder="Last Name"
+                        v-model="form.lastname"
+                        placeholder="lastname"
                         class="input-style"
                       />
                     </div>
                     <div class="mb-6">
                       <input
                         type="date"
-                        v-model="dateOfBirth"
+                        v-model="form.dateofbirth"
                         placeholder="Date of Birth"
                         class="input-style"
                       />
@@ -88,7 +92,7 @@
                     <div class="mb-6">
                       <input
                         type="text"
-                        v-model="username"
+                        v-model="form.name"
                         placeholder="Username"
                         class="input-style"
                       />
@@ -101,10 +105,10 @@
                 </div>
                 <div v-else>
                   <!-- Andmete vaatamine -->
-                  <p class="mb-4 text-base text-body-color">First Name: {{ firstName }}</p>
-                  <p class="mb-4 text-base text-body-color">Last Name: {{ lastName }}</p>
-                  <p class="mb-4 text-base text-body-color">Date of Birth: {{ dateOfBirth }}</p>
-                  <p class="mb-4 text-base text-body-color">Username: {{ username }}</p>
+                  <p class="mb-4 text-base text-body-color">First Name: {{ authStore.user.firstname  }}</p>
+                  <p class="mb-4 text-base text-body-color">Last Name: {{ authStore.user.lastname  }}</p>
+                  <p class="mb-4 text-base text-body-color">Date of Birth: {{ authStore.user.dateOfBirth  }}</p>
+                  <p class="mb-4 text-base text-body-color">Username: {{ authStore.user.name }}</p>
                   <button @click="editProfile" class="button-style">Edit Profile</button>
                 </div>
               </div>

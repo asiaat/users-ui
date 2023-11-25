@@ -44,6 +44,8 @@ export const useAuthStore = defineStore("auth",{
                 email: data.email,
                 password: data.password,
                 password_confirmation: data.password_confirmation,
+                firstname: data.firstname,
+                lastname: data.lastname,
               });
               this.router.push("/");
             } catch (error) {
@@ -56,9 +58,9 @@ export const useAuthStore = defineStore("auth",{
             
             await this.getToken();
             try {
-              await axios.post("/update_customer", {
+              await axios.put("/update", {
                 name: data.name,
-                firstname: data,firstname,
+                firstname: data.firstname,
                 lastname: data.lastname,
                 birthofdate: data.birthofdate,
               });

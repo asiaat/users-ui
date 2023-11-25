@@ -9,7 +9,9 @@ const form = ref({
     name:"",
     email: "",
     password: "",
-    password_confirmation : ""
+    password_confirmation : "",
+    firstname:"",
+    lastname:"",
 });
 
 
@@ -58,6 +60,48 @@ const form = ref({
                   "
                 />
                 </div>
+                <div class="mb-6">
+                <input
+                  type="text"
+                  v-model="form.firstname"
+                  placeholder="First Name"
+                  class="
+                    bordder-[#E9EDF4]
+                    w-full
+                    rounded-md
+                    border
+                    bg-[#FCFDFE]
+                    py-3
+                    px-5
+                    text-base text-body-color
+                    placeholder-[#ACB6BE]
+                    outline-none
+                    focus:border-primary
+                    focus-visible:shadow-none
+                  "
+                />
+                </div>
+                <div class="mb-6">
+                <input
+                  type="text"
+                  v-model="form.lastname"
+                  placeholder="Last Name"
+                  class="
+                    bordder-[#E9EDF4]
+                    w-full
+                    rounded-md
+                    border
+                    bg-[#FCFDFE]
+                    py-3
+                    px-5
+                    text-base text-body-color
+                    placeholder-[#ACB6BE]
+                    outline-none
+                    focus:border-primary
+                    focus-visible:shadow-none
+                  "
+                />
+                </div>  
               <div class="mb-6">
                 <input
                   type="email"
