@@ -3,6 +3,17 @@
   import { ref, onMounted } from "vue";
   import { useAuthStore } from "../stores/auth";
  
+  import Datepicker from '@vuepic/vue-datepicker';
+  import '@vuepic/vue-datepicker/dist/main.css';
+
+
+  const format = (date) => {
+    const day     = date.getDate();
+    const month   = date.getMonth() + 1;
+    const year    = date.getFullYear();
+
+    return `${year}-${month}-${day}`;
+  }
   
   const authStore = useAuthStore();
   const isEditing = ref(false);
@@ -22,13 +33,13 @@
         password_confirmation : "",
         firstname:"",
         lastname:"",
-        birthofdate:"",
+        dateofbirth:"",
     });
 
     const initializeForm = () => {
         form.value.firstname = authStore.user.firstname || "";
         form.value.lastname = authStore.user.lastname || "";
-        form.value.birthofdate = authStore.user.birthofdate || "";
+        form.value.dateofbirth = authStore.user.dateofbirth || "";
         form.value.name = authStore.user.name || "";
         // ... Muud väljad ...
     };
@@ -45,7 +56,7 @@
   </script>
 
 <template>
-    <section class="bg-[#F4F7FF] py-20 lg:py-[120px]">
+    <section class="bg-[#F4F7FF] py-20 lg:py-[160px]">
       <div class="container mx-auto">
         <div class="-mx-4 flex flex-wrap">
             
@@ -70,6 +81,10 @@
                   <!-- Muutmise vorm -->
                   <form @submit.prevent="authStore.handleUpdateCustomer(form)">
                     <div class="mb-6">
+                      
+                      <Datepicker v-model="form.dateofbirth" :format="format" />
+                    </div>
+                    <div class="mb-6">
                       <input
                         type="text"
                         v-model="form.firstname"
@@ -86,14 +101,7 @@
                         class="input-style"
                       />
                     </div>
-                    <div class="mb-6">
-                      <input
-                        type="date"
-                        v-model="form.dateofbirth"
-                        placeholder="Date of Birth"
-                        class="input-style"
-                      />
-                    </div>
+                    
                     <div class="mb-6">
                       <input
                         type="text"
@@ -112,17 +120,14 @@
                   <!-- Andmete vaatamine -->
                   <p class="mb-4 text-base text-body-color">First Name: {{ authStore.user.firstname  }}</p>
                   <p class="mb-4 text-base text-body-color">Last Name: {{ authStore.user.lastname  }}</p>
-                  <p class="mb-4 text-base text-body-color">Date of Birth: {{ authStore.user.dateOfBirth  }}</p>
+                  <p class="mb-4 text-base text-body-color">Date of Birth: {{ authStore.user.dateofbirth  }}</p>
                   <p class="mb-4 text-base text-body-color">Username: {{ authStore.user.name }}</p>
                   <button @click="editProfile" class="button-style">Edit Profile</button>
                 </div>
               </div>
               <div v-else>
                 <h1>Please login to view your profile</h1>
-                <div>
-                    datepicker
-                    <Datepicker v-model="date" />
-                </div>
+                
               </div>
             </div>
           </div>

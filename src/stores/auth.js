@@ -1,6 +1,23 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
+function formatDate(date) {
+    if (!(date instanceof Date)) {
+      date = new Date(date);
+    }
+  
+    let month = '' + (date.getMonth() + 1),
+        day = '' + date.getDate(),
+        year = date.getFullYear();
+  
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+  
+    return [year, month, day].join('-');
+  };
+
 export const useAuthStore = defineStore("auth",{
     state: () => ({
         authUser: null,
@@ -55,14 +72,16 @@ export const useAuthStore = defineStore("auth",{
             }
           }, 
           async handleUpdateCustomer(data) {
-            
+
+            const formattedDateOfBirth = formatDate(data.dateofbirth);
+
             await this.getToken();
             try {
               await axios.put("/update", {
                 name: data.name,
                 firstname: data.firstname,
                 lastname: data.lastname,
-                birthofdate: data.birthofdate,
+                dateofbirth: formattedDateOfBirth,
               });
               this.router.push("/");
             } catch (error) {
