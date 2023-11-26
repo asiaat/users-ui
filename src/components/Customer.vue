@@ -6,7 +6,6 @@
   import Datepicker from '@vuepic/vue-datepicker';
   import '@vuepic/vue-datepicker/dist/main.css';
 
-
   const format = (date) => {
     const day     = date.getDate();
     const month   = date.getMonth() + 1;
@@ -23,11 +22,8 @@
     
     initializeForm();
   });
-
-  
   
   const form = ref({
-        name:"",
         email: "",
         password: "",
         password_confirmation : "",
@@ -40,8 +36,6 @@
         form.value.firstname = authStore.user.firstname || "";
         form.value.lastname = authStore.user.lastname || "";
         form.value.dateofbirth = authStore.user.dateofbirth || "";
-        form.value.name = authStore.user.name || "";
-        // ... Muud väljad ...
     };
   
   const editProfile = () => {
@@ -102,14 +96,7 @@
                       />
                     </div>
                     
-                    <div class="mb-6">
-                      <input
-                        type="text"
-                        v-model="form.name"
-                        placeholder="Username"
-                        class="input-style"
-                      />
-                    </div>
+                    
                     <div class="mb-10">
                         <button type="submit" class="button-style">Save Changes</button>
                         <button type="button" @click="cancelEdit" class="button-style-secondary">Cancel</button>
@@ -121,7 +108,7 @@
                   <p class="mb-4 text-base text-body-color">First Name: {{ authStore.user.firstname  }}</p>
                   <p class="mb-4 text-base text-body-color">Last Name: {{ authStore.user.lastname  }}</p>
                   <p class="mb-4 text-base text-body-color">Date of Birth: {{ authStore.user.dateofbirth  }}</p>
-                  <p class="mb-4 text-base text-body-color">Username: {{ authStore.user.name }}</p>
+                  
                   <button @click="editProfile" class="button-style">Edit Profile</button>
                 </div>
               </div>

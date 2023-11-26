@@ -6,14 +6,12 @@ import { useAuthStore } from "../stores/auth";
 const authStore = useAuthStore();
 
 const form = ref({
-    name:"",
     email: "",
     password: "",
     password_confirmation : "",
     firstname:"",
     lastname:"",
 });
-
 
 </script>
 
@@ -39,27 +37,7 @@ const form = ref({
           >
             <div class="mb-10 text-center md:mb-16">Sign Up </div>
             <form @submit.prevent="authStore.handleRegister(form)">
-                <div class="mb-6">
-                <input
-                  type="text"
-                  v-model="form.name"
-                  placeholder="Name"
-                  class="
-                    bordder-[#E9EDF4]
-                    w-full
-                    rounded-md
-                    border
-                    bg-[#FCFDFE]
-                    py-3
-                    px-5
-                    text-base text-body-color
-                    placeholder-[#ACB6BE]
-                    outline-none
-                    focus:border-primary
-                    focus-visible:shadow-none
-                  "
-                />
-                </div>
+               
                 <div class="mb-6">
                 <input
                   type="text"

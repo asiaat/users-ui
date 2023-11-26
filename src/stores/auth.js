@@ -57,7 +57,6 @@ export const useAuthStore = defineStore("auth",{
             await this.getToken();
             try {
               await axios.post("/register", {
-                name: data.name,
                 email: data.email,
                 password: data.password,
                 password_confirmation: data.password_confirmation,
@@ -78,7 +77,6 @@ export const useAuthStore = defineStore("auth",{
             await this.getToken();
             try {
               await axios.put("/update", {
-                name: data.name,
                 firstname: data.firstname,
                 lastname: data.lastname,
                 dateofbirth: formattedDateOfBirth,
@@ -95,7 +93,6 @@ export const useAuthStore = defineStore("auth",{
             this.authUser = null;
           },
           async handleForgotPassword(email) {
-            //this.authErrors = [];
             this.getToken();
             try {
               const response = await axios.post("/forgot-password", {
