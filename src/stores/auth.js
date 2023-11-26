@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+//import { useAuthStore } from './auth';
 
 function formatDate(date) {
     if (!(date instanceof Date)) {
@@ -21,11 +22,11 @@ function formatDate(date) {
 export const useAuthStore = defineStore("auth",{
     state: () => ({
         authUser: null,
-        
+        authErrors: []
       }),
       getters: {
         user: (state) => state.authUser,
-       
+        errors: (state) => state.authErrors
       },
       actions: {
         async getToken() {
@@ -37,7 +38,7 @@ export const useAuthStore = defineStore("auth",{
             this.authUser = data.data;
           },
           async handleLogin(data) {
-            
+            this.authErrors = [];
             await this.getToken();
       
             try {
@@ -53,7 +54,7 @@ export const useAuthStore = defineStore("auth",{
             }
           }, 
           async handleRegister(data) {
-            
+            this.authErrors = [];
             await this.getToken();
             try {
               await axios.post("/register", {
@@ -89,6 +90,7 @@ export const useAuthStore = defineStore("auth",{
             }
           }, 
           async handleLogout() {
+            this.authErrors = [];
             await axios.post("/logout");
             this.authUser = null;
           },
