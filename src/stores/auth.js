@@ -107,5 +107,16 @@ export const useAuthStore = defineStore("auth",{
               }
             }
           },
+          async handleResetPassword(resetData) {
+            this.authErrors = [];
+            try {
+              const response = await axios.post("/password-reset", resetData);
+              this.authStatus = response.data.status;
+            } catch (error) {
+              if (error.response.status === 422) {
+                this.authErrors = error.response.data.errors;
+              }
+            }
+          },
       }
 })
