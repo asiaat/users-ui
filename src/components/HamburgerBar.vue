@@ -206,7 +206,24 @@ const authStore = useAuthStore();
             </li>
           </template>
           <template v-else>
-            <button
+            <li>
+                <router-link
+                :to="{ name: 'Customer' }"
+                class="
+                block
+                  rounded
+                  py-2
+                  pr-4
+                  pl-3
+                  text-gray-600
+                  hover:bg-gray-300
+                "
+                @click="toggleMenu"
+                >Customer's settings</router-link
+              >
+            </li>
+            <li>
+                <button
               @click="authStore.handleLogout"
               class="
                 block
@@ -220,6 +237,8 @@ const authStore = useAuthStore();
             >
               Logout
             </button>
+            </li>
+            
           </template>
       </ul>
       <button @click="toggleMenu" class="self-end">Close</button>
