@@ -129,6 +129,21 @@ const authStore = useAuthStore();
             </li>
           </template>
           <template v-else>
+            
+            <router-link
+                :to="{ name: 'Customer' }"
+                class="
+                block
+                  rounded
+                  py-2
+                  pr-4
+                  pl-3
+                  text-gray-100
+                  hover:bg-gray-600
+                "
+                
+                >Profile
+                </router-link>
             <button
               @click="authStore.handleLogout"
               class="
@@ -150,6 +165,7 @@ const authStore = useAuthStore();
     </div>
   </nav>
 
+  <!-- Modal for Haburger menu -->
   <div v-show="isMenuOpen" class="fixed inset-0 pt-16 z-40 bg-white p-5">
     <div class="flex flex-col h-full justify-between">
       <ul class="space-y-4">
@@ -215,12 +231,12 @@ const authStore = useAuthStore();
                   py-2
                   pr-4
                   pl-3
-                  text-gray-600
-                  hover:bg-gray-300
+                  text-gray-100
+                  hover:bg-gray-600
                 "
                 @click="toggleMenu"
-                >Customer's settings</router-link
-              >
+                >Profile
+                </router-link>
             </li>
             <li>
                 <button
