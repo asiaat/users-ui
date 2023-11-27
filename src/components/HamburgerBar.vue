@@ -231,8 +231,8 @@ const authStore = useAuthStore();
                   py-2
                   pr-4
                   pl-3
-                  text-gray-100
-                  hover:bg-gray-600
+                  text-gray-600
+                  hover:bg-gray-300
                 "
                 @click="toggleMenu"
                 >Profile
