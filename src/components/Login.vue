@@ -103,6 +103,23 @@ const form = ref({
                 </button>
               </div>
             </form>
+            <div class="mb-10">
+                <button
+                  type="submit"
+                  class="
+                    w-full
+                    px-4
+                    py-3
+                    bg-green-700
+                    hover:bg-green-400
+                    rounded-md
+                    text-white
+                  "
+                  @click="authStore.handleGoogleAuth()"
+                >
+                  Google Login
+                </button>
+            </div>
             <router-link
               to="/forgot-password"
               class="

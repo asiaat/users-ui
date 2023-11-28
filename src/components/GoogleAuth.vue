@@ -1,8 +1,21 @@
 <script setup>
-import { ref } from "vue";
+import { onMounted } from "vue";
 import { useAuthStore } from "../stores/auth";
 
 const authStore = useAuthStore();
+
+/*
+onMounted(() => {
+  const urlParams = new URLSearchParams(window.location.search);
+  console.log("urlParams: "+urlParams.toString());
+  const token = urlParams.get('token'); 
+
+  if (token) {
+    console.log("token: "+token);
+    authStore.handleGoogleCallback(token);
+  }
+});
+*/
 </script>
 
 <template>

@@ -118,8 +118,7 @@ export const useAuthStore = defineStore("auth",{
                 this.authErrors = error.response.data.errors;
               }
             }
-          },
-          
+          },         
           async handleGoogleAuth() {
             this.getToken();
             this.authErrors = [];
@@ -132,6 +131,17 @@ export const useAuthStore = defineStore("auth",{
                 this.authErrors = error;
                 console.log("CATCH error: "+this.authErrors);
              
+            }
+          },
+          async handleGoogleCallback(token) {
+            this.getToken();
+            this.authErrors = [];
+            try {
+              const response = await axios.post("/api/auth/google/callback", { token });
+              this.authUser = response.data.user;
+              localStorage.setItem('userToken', response.data.token); // Salvestage token
+            } catch (error) {
+              this.authErrors = error;
             }
           },
           
