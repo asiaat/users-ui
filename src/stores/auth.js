@@ -119,5 +119,21 @@ export const useAuthStore = defineStore("auth",{
               }
             }
           },
+          
+          async handleGoogleAuth() {
+            this.getToken();
+            this.authErrors = [];
+            try {
+              const response = await axios.get("/api/auth/google/redirect");
+              console.log(response);
+              window.location.href = response.data.url;
+            } catch (error) {
+              
+                this.authErrors = error;
+                console.log("CATCH error: "+this.authErrors);
+             
+            }
+          },
+          
       }
 })

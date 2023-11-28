@@ -28,6 +28,11 @@ const routes = [
         name: "ResetPassword",
         component: () => import("../components/ResetPassword.vue"),
       },
+      {
+        path: "/google",
+        name: "GoogleAuth",
+        component: () => import("../components/GoogleAuth.vue"),
+      },
 ];
 
 const router = createRouter({
