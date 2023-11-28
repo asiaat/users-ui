@@ -46,7 +46,7 @@
     isEditing.value = false;
   };
   
-  
+
   </script>
 
 <template>
