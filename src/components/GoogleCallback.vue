@@ -2,17 +2,7 @@
 import { ref, onMounted } from "vue";
 import { useAuthStore } from "../stores/auth";
 
-import Datepicker from '@vuepic/vue-datepicker';
-import '@vuepic/vue-datepicker/dist/main.css';
 
-const date = ref(new Date());
-const format = (date) => {
-  const day     = date.getDate();
-  const month   = date.getMonth() + 1;
-  const year    = date.getFullYear();
-
-  return `${day}/${month}/${year}`;
-}
 
 const authStore = useAuthStore();
 
@@ -20,11 +10,10 @@ onMounted(async () => {
   await authStore.getUser();
 });
 
-
 </script>
 <template>
     <div class="max-w-7xl mx-auto">
-        <h1>Home ...</h1>
+        <h1>Google Callback</h1>
  
        
       <div v-if="authStore.user">
