@@ -38,6 +38,11 @@ const routes = [
         name: "GoogleCallback",
         component: () => import("../components/GoogleCallback.vue"),
       },
+      {
+        path: "/emailsent",
+        name: "EmailSentMsg",
+        component: () => import("../components/EmailSentMsg.vue"),
+      },
 ];
 
 const router = createRouter({
