@@ -53,7 +53,6 @@
     <section class="bg-[#F4F7FF] py-20 lg:py-[160px]">
       <div class="container mx-auto">
         <div class="-mx-4 flex flex-wrap">
-            
           <div class="w-full px-4">
             <div
               class="
@@ -75,28 +74,29 @@
                   <!-- Muutmise vorm -->
                   <form @submit.prevent="authStore.handleUpdateCustomer(form)">
                     <div class="mb-6">
-                      
-                      <Datepicker v-model="form.dateofbirth" :format="format" />
+                      <label for="dateofbirth" class="block mb-2 text-sm font-medium text-gray-900">Date of Birth</label>
+                      <Datepicker id="dateofbirth" v-model="form.dateofbirth" :format="format" />
                     </div>
                     <div class="mb-6">
+                      <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900">First Name</label>
                       <input
+                        id="firstname"
                         type="text"
                         v-model="form.firstname"
                         placeholder="firstname"
                         class="input-style"
-                        
                       />
                     </div>
                     <div class="mb-6">
+                      <label for="lastname" class="block mb-2 text-sm font-medium text-gray-900">Last Name</label>
                       <input
+                        id="lastname"
                         type="text"
                         v-model="form.lastname"
                         placeholder="lastname"
                         class="input-style"
                       />
                     </div>
-                    
-                    
                     <div class="mb-10">
                         <button type="submit" class="button-style">Save Changes</button>
                         <button type="button" @click="cancelEdit" class="button-style-secondary">Cancel</button>
@@ -108,20 +108,19 @@
                   <p class="mb-4 text-base text-body-color">First Name: {{ authStore.user.firstname  }}</p>
                   <p class="mb-4 text-base text-body-color">Last Name: {{ authStore.user.lastname  }}</p>
                   <p class="mb-4 text-base text-body-color">Date of Birth: {{ authStore.user.dateofbirth  }}</p>
-                  
                   <button @click="editProfile" class="button-style">Edit Profile</button>
                 </div>
               </div>
               <div v-else>
                 <h1>Please login to view your profile</h1>
-                
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </template>
+</template>
+
   
 
   
