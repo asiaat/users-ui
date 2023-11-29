@@ -13,7 +13,7 @@ const email = ref("");
   >
     <h3 class="font-bold">Forgot password</h3>
 
-    <!-- Display success message -->
+    <!-- Display success messages -->
     <div
       class="m-2 p-2 text-green-900 font-semibold bg-green-300 rounded-md"
       v-if="authStore.status"
@@ -26,10 +26,11 @@ const email = ref("");
       <span class="text-red-400 text-sm m-2 p-2">{{ authStore.errors.email[0] }}</span>
     </div>
 
+    <!-- Email Input -->
     <div class="my-6">
       <label
         for="email"
-        class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-300"
+        class="mb-2 block text-sm font-medium text-gray-900 dark:text-gray-400"
         >Your email</label
       >
       <input
@@ -37,24 +38,24 @@ const email = ref("");
         id="email"
         v-model="email"
         class="
-          block
-          w-full
-          rounded-lg
-          border border-gray-300
-          bg-gray-50
-          p-2.5
-          text-sm text-gray-900
-          focus:border-blue-500 focus:ring-blue-500
-          dark:border-gray-600
-          dark:bg-gray-700
-          dark:text-white
-          dark:placeholder-gray-400
-          dark:focus:border-blue-500
-          dark:focus:ring-blue-500
-        "
-        placeholder="email@laraveller.com"
+                    bordder-[#E9EDF4]
+                    w-full
+                    rounded-md
+                    border
+                    bg-[#FCFDFE]
+                    py-3
+                    px-5
+                    text-base text-body-color
+                    placeholder-[#ACB6BE]
+                    outline-none
+                    focus:border-primary
+                    focus-visible:shadow-none
+                  "
+        placeholder="test@test"
       />
     </div>
+
+    <!-- Submit Button -->
     <button
       class="
         w-full
@@ -73,5 +74,9 @@ const email = ref("");
     >
       Submit
     </button>
+
+    <!-- Disclaimer Section -->
+    
+    <!-- End of Disclaimer Section -->
   </form>
 </template>
