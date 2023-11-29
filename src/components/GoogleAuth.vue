@@ -25,7 +25,6 @@ onMounted(() => {
         <div class="w-full px-4">
           <div class="relative mx-auto max-w-[525px] overflow-hidden rounded-lg bg-white py-16 px-10 text-center sm:px-12 md:px-[60px]">
             <div class="mb-10 text-center md:mb-16">Login</div>
-            <!-- Nupp Google'i autentimiseks -->
             <button
               @click="authStore.handleGoogleAuth()"
               class="w-full px-4 py-3 bg-indigo-500 hover:bg-indigo-700 rounded-md text-white"
